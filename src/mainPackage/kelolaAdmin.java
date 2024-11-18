@@ -107,6 +107,7 @@ public class kelolaAdmin extends javax.swing.JFrame {
         panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         tambahBtn.setBackground(new java.awt.Color(0, 102, 255));
         tambahBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N

@@ -37,15 +37,16 @@ public class signIn extends javax.swing.JFrame {
         passwordTf = new javax.swing.JTextField();
         password = new javax.swing.JLabel();
         signBtn = new javax.swing.JButton();
+        signUpBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(406, 306));
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         background.setBackground(new java.awt.Color(153, 153, 153));
 
         pop_up_form.setBackground(new java.awt.Color(204, 204, 204));
+        pop_up_form.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         sign_in.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         sign_in.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -73,10 +74,21 @@ public class signIn extends javax.swing.JFrame {
         signBtn.setBackground(new java.awt.Color(51, 51, 255));
         signBtn.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         signBtn.setForeground(new java.awt.Color(255, 255, 255));
-        signBtn.setText("SIGN IN");
+        signBtn.setText("Sign In");
         signBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signBtnActionPerformed(evt);
+            }
+        });
+
+        signUpBtn.setBackground(new java.awt.Color(0, 204, 0));
+        signUpBtn.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        signUpBtn.setForeground(new java.awt.Color(255, 255, 255));
+        signUpBtn.setText("Create New Account");
+        signUpBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpBtnActionPerformed(evt);
             }
         });
 
@@ -87,27 +99,30 @@ public class signIn extends javax.swing.JFrame {
             .addGroup(pop_up_formLayout.createSequentialGroup()
                 .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pop_up_formLayout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pop_up_formLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(usernameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(username)
                             .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password))))
-                .addContainerGap(51, Short.MAX_VALUE))
-            .addGroup(pop_up_formLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
+                            .addComponent(password)))
+                    .addGroup(pop_up_formLayout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pop_up_formLayout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(signUpBtn)))
+                .addContainerGap(78, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pop_up_formLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(signBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(230, 230, 230))
         );
         pop_up_formLayout.setVerticalGroup(
             pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pop_up_formLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(22, 22, 22)
                 .addComponent(sign_in)
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addComponent(username)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,26 +130,28 @@ public class signIn extends javax.swing.JFrame {
                 .addComponent(password)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(signBtn)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(signUpBtn)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addComponent(pop_up_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(26, 26, 26)
                 .addComponent(pop_up_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,6 +203,12 @@ public class signIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTfActionPerformed
 
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        // TODO add your handling code here:
+        new signUp().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_signUpBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,6 +251,7 @@ public class signIn extends javax.swing.JFrame {
     private javax.swing.JTextField passwordTf;
     private javax.swing.JPanel pop_up_form;
     private javax.swing.JButton signBtn;
+    private javax.swing.JButton signUpBtn;
     private javax.swing.JLabel sign_in;
     private javax.swing.JLabel username;
     private javax.swing.JTextField usernameTf;
