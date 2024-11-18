@@ -98,6 +98,11 @@ public class mainPagePembeli extends javax.swing.JFrame {
         transaksiBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
         transaksiBtn.setForeground(new java.awt.Color(255, 255, 255));
         transaksiBtn.setText("TRANSAKSI");
+        transaksiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transaksiBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -185,10 +190,17 @@ public class mainPagePembeli extends javax.swing.JFrame {
 
     private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
         // TODO add your handling code here:
-        mainPageAdmin nextFrame = new mainPageAdmin(); // Jangan lupa membuat JFrame `NextFrame`
+        signIn nextFrame = new signIn();
         nextFrame.setVisible(true);
-        this.dispose(); // Menutup frame saat ini
+        this.dispose(); 
     }//GEN-LAST:event_hapusBtnActionPerformed
+
+    private void transaksiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiBtnActionPerformed
+        // TODO add your handling code here:
+        transaksiPembeli nextFrame = new transaksiPembeli();
+        nextFrame.setVisible(true);
+        this.dispose(); 
+    }//GEN-LAST:event_transaksiBtnActionPerformed
 
     /**
      * @param args the command line arguments
