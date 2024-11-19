@@ -36,8 +36,8 @@ public class signUp extends javax.swing.JFrame {
         username = new javax.swing.JLabel();
         passwordTf = new javax.swing.JTextField();
         password = new javax.swing.JLabel();
+        signInBtn = new javax.swing.JButton();
         signUpBtn = new javax.swing.JButton();
-        signUpBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -70,26 +70,26 @@ public class signUp extends javax.swing.JFrame {
         password.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         password.setText("Password");
 
-        signUpBtn.setBackground(new java.awt.Color(204, 204, 204));
-        signUpBtn.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
-        signUpBtn.setForeground(new java.awt.Color(25, 25, 255));
-        signUpBtn.setText("Sudah punya akun");
-        signUpBtn.setBorder(null);
-        signUpBtn.setBorderPainted(false);
-        signUpBtn.setContentAreaFilled(false);
-        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+        signInBtn.setBackground(new java.awt.Color(204, 204, 204));
+        signInBtn.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        signInBtn.setForeground(new java.awt.Color(25, 25, 255));
+        signInBtn.setText("Sudah punya akun");
+        signInBtn.setBorder(null);
+        signInBtn.setBorderPainted(false);
+        signInBtn.setContentAreaFilled(false);
+        signInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpBtnActionPerformed(evt);
+                signInBtnActionPerformed(evt);
             }
         });
 
-        signUpBtn1.setBackground(new java.awt.Color(51, 51, 255));
-        signUpBtn1.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
-        signUpBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        signUpBtn1.setText("SIGN UP");
-        signUpBtn1.addActionListener(new java.awt.event.ActionListener() {
+        signUpBtn.setBackground(new java.awt.Color(51, 51, 255));
+        signUpBtn.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        signUpBtn.setForeground(new java.awt.Color(255, 255, 255));
+        signUpBtn.setText("SIGN UP");
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpBtn1ActionPerformed(evt);
+                signUpBtnActionPerformed(evt);
             }
         });
 
@@ -111,10 +111,10 @@ public class signUp extends javax.swing.JFrame {
                             .addComponent(password)))
                     .addGroup(pop_up_formLayout.createSequentialGroup()
                         .addGap(226, 226, 226)
-                        .addComponent(signUpBtn1))
+                        .addComponent(signUpBtn))
                     .addGroup(pop_up_formLayout.createSequentialGroup()
                         .addGap(214, 214, 214)
-                        .addComponent(signUpBtn)))
+                        .addComponent(signInBtn)))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         pop_up_formLayout.setVerticalGroup(
@@ -131,9 +131,9 @@ public class signUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(signUpBtn1)
+                .addComponent(signUpBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -172,20 +172,38 @@ public class signUp extends javax.swing.JFrame {
         // TODO add your handling code here:    
     }//GEN-LAST:event_usernameTfActionPerformed
 
-    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+    private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
         // TODO add your handling code here:
         new signIn().setVisible(true);
         setVisible(false);
         
-    }//GEN-LAST:event_signUpBtnActionPerformed
+    }//GEN-LAST:event_signInBtnActionPerformed
 
     private void passwordTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTfActionPerformed
 
-    private void signUpBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtn1ActionPerformed
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_signUpBtn1ActionPerformed
+        String username = usernameTf.getText();
+        String password = passwordTf.getText();
+        
+            if (username.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Username atau Password tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        
+//        try {
+//            database
+//                    
+//            if (response.status == 400){
+//            }        
+//            
+//            200
+//                    
+//        } catch (){
+//        }
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,8 +248,8 @@ public class signUp extends javax.swing.JFrame {
     private javax.swing.JLabel password;
     private javax.swing.JTextField passwordTf;
     private javax.swing.JPanel pop_up_form;
+    private javax.swing.JButton signInBtn;
     private javax.swing.JButton signUpBtn;
-    private javax.swing.JButton signUpBtn1;
     private javax.swing.JLabel sign_in;
     private javax.swing.JLabel username;
     private javax.swing.JTextField usernameTf;
