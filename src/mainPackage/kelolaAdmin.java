@@ -37,14 +37,12 @@ public class kelolaAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         tambahBtn = new javax.swing.JButton();
         hapusBtn = new javax.swing.JButton();
-        idBukuTf = new javax.swing.JTextField();
         PenulisTf = new javax.swing.JTextField();
         judulTf = new javax.swing.JTextField();
         hargaTf = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         editBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         daftarBukuTable = new javax.swing.JTable();
@@ -69,7 +67,7 @@ public class kelolaAdmin extends javax.swing.JFrame {
 
         Penjual.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Penjual.setForeground(new java.awt.Color(255, 255, 255));
-        Penjual.setText("Penjual");
+        Penjual.setText("Admin");
 
         backBtn.setBackground(new java.awt.Color(204, 0, 0));
         backBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
@@ -119,12 +117,6 @@ public class kelolaAdmin extends javax.swing.JFrame {
         hapusBtn.setForeground(new java.awt.Color(255, 255, 255));
         hapusBtn.setText("HAPUS");
 
-        idBukuTf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idBukuTfActionPerformed(evt);
-            }
-        });
-
         PenulisTf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PenulisTfActionPerformed(evt);
@@ -155,10 +147,6 @@ public class kelolaAdmin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Harga");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("ID Buku");
-
         editBtn.setBackground(new java.awt.Color(0, 102, 255));
         editBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,14 +159,12 @@ public class kelolaAdmin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(judulTf, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                     .addComponent(PenulisTf)
                     .addComponent(hargaTf)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idBukuTf))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
@@ -192,11 +178,7 @@ public class kelolaAdmin extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idBukuTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PenulisTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,11 +240,11 @@ public class kelolaAdmin extends javax.swing.JFrame {
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(47, 47, 47)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,10 +277,6 @@ public class kelolaAdmin extends javax.swing.JFrame {
     private void hargaTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hargaTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hargaTfActionPerformed
-
-    private void idBukuTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBukuTfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idBukuTfActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
@@ -366,11 +344,9 @@ public class kelolaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton hapusBtn;
     private javax.swing.JTextField hargaTf;
     private javax.swing.JPanel header;
-    private javax.swing.JTextField idBukuTf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

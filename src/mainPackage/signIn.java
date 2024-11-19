@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mainPackage;
+import Database.Database;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -41,7 +42,6 @@ public class signIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(406, 306));
 
         background.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -100,22 +100,21 @@ public class signIn extends javax.swing.JFrame {
                 .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pop_up_formLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(username)
-                            .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password)))
+                            .addComponent(password)
+                            .addComponent(passwordTf, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                            .addComponent(usernameTf)))
                     .addGroup(pop_up_formLayout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addComponent(sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pop_up_formLayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(signUpBtn)))
-                .addContainerGap(78, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pop_up_formLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(signBtn)
-                .addGap(230, 230, 230))
+                        .addGap(205, 205, 205)
+                        .addComponent(signUpBtn))
+                    .addGroup(pop_up_formLayout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(signBtn)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         pop_up_formLayout.setVerticalGroup(
             pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,11 +129,11 @@ public class signIn extends javax.swing.JFrame {
                 .addComponent(password)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(signBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(signUpBtn)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -142,16 +141,16 @@ public class signIn extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(31, 31, 31)
                 .addComponent(pop_up_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(pop_up_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,20 +182,38 @@ public class signIn extends javax.swing.JFrame {
             return;
         }
         
-        String dummyUsername = "admin";  // Ganti dengan kolom database di masa depan
-        String dummyPassword = "12345";  // Ganti dengan kolom database di masa depan
+        Database db = new Database();
         
-        if (username.equals(dummyUsername) && password.equals(dummyPassword)) {
-        JOptionPane.showMessageDialog(this, "Login berhasil!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        String role = db.getUser(username, password);
+        
+        if ("admin".equals(role)) {
+        JOptionPane.showMessageDialog(this, "Login berhasil sebagai Admin!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
 
-        // Navigasi ke JFrame selanjutnya (masih template)
-        // Ganti `NextFrame` dengan nama JFrame yang akan digunakan
-        mainPageAdmin nextFrame = new mainPageAdmin(); // Jangan lupa membuat JFrame `NextFrame`
-        nextFrame.setVisible(true);
-        this.dispose(); // Menutup frame saat ini
+        // Redirect ke mainPageAdmin
+        mainPageAdmin adminPage = new mainPageAdmin();
+        adminPage.setVisible(true);
+        this.dispose();
+        } else if ("pembeli".equals(role)) {
+        JOptionPane.showMessageDialog(this, "Login berhasil sebagai Pembeli!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+
+        // Redirect ke mainPagePembeli
+        mainPagePembeli pembeliPage = new mainPagePembeli();
+        pembeliPage.setVisible(true);
+        this.dispose();
         } else {
+        // Jika username atau password salah
         JOptionPane.showMessageDialog(this, "Username atau Password salah!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    }
+//        if (username.equals(dummyUsername) && password.equals(dummyPassword)) {
+//        JOptionPane.showMessageDialog(this, "Login berhasil!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+//
+//        // Ganti `NextFrame` dengan nama JFrame yang akan digunakan
+//        mainPageAdmin nextFrame = new mainPageAdmin(); 
+//        nextFrame.setVisible(true);
+//        this.dispose(); 
+//        } else {
+//        JOptionPane.showMessageDialog(this, "Username atau Password salah!", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_signBtnActionPerformed
 
     private void passwordTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTfActionPerformed
@@ -207,6 +224,8 @@ public class signIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         new signUp().setVisible(true);
         setVisible(false);
+        
+        
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     /**

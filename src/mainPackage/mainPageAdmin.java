@@ -30,6 +30,7 @@ public class mainPageAdmin extends javax.swing.JFrame {
 
         header = new javax.swing.JPanel();
         Penjual = new javax.swing.JLabel();
+        hapusBtn = new javax.swing.JButton();
         panel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -45,29 +46,45 @@ public class mainPageAdmin extends javax.swing.JFrame {
 
         Penjual.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Penjual.setForeground(new java.awt.Color(255, 255, 255));
-        Penjual.setText("Penjual");
+        Penjual.setText("Admin");
+
+        hapusBtn.setBackground(new java.awt.Color(204, 0, 0));
+        hapusBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
+        hapusBtn.setForeground(new java.awt.Color(255, 255, 255));
+        hapusBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back (1).png"))); // NOI18N
+        hapusBtn.setBorder(null);
+        hapusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(hapusBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Penjual, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(Penjual)
-                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(hapusBtn)
+                    .addComponent(Penjual))
+                .addGap(20, 20, 20))
         );
 
         panel.setBackground(new java.awt.Color(255, 255, 255));
         panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -191,6 +208,13 @@ public class mainPageAdmin extends javax.swing.JFrame {
         this.dispose(); // Menutup frame saat ini
     }//GEN-LAST:event_kelolaBtnActionPerformed
 
+    private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
+        // TODO add your handling code here:
+        signIn nextFrame = new signIn();
+        nextFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_hapusBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -236,6 +260,7 @@ public class mainPageAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Penjual;
     private javax.swing.JTable daftarBukuTable;
+    private javax.swing.JButton hapusBtn;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
