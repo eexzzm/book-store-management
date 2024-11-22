@@ -4,19 +4,56 @@
  */
 package mainPackage;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import DataModels.*;
+import Database.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author reizi
  */
 public class transaksiAdmin extends javax.swing.JFrame {
-
+    Database db;
+    ArrayList<Transaksi> listTransaksi;
+    DefaultTableModel transaksiTableModel;
     /**
      * Creates new form transaksiPenjual
      */
     public transaksiAdmin() {
         initComponents();
+        db = new Database();
+        getData();
     }
 
+    public void getData(){
+        listTransaksi = db.lihatTransaksi();
+        showDataTable();
+    }
+    
+    public void showDataTable(){
+        String[] headerTableColumns = {"ID Transaksi", "ID Pembeli", "ID Buku", "Jumlah Buku"};
+        Object[][] produkValue = new Object[listTransaksi.size()][headerTableColumns.length];
+        int i = 0;
+        
+        for(Transaksi transaksi: listTransaksi) {
+            String produkData[] = {transaksi.idTransaksi+"", transaksi.idPembeli+ "", transaksi.idBuku+ "", transaksi.jumlahBuku + ""};
+            produkValue[i] = produkData;
+            i++;
+        };
+        
+        transaksiTableModel = new DefaultTableModel(produkValue, headerTableColumns) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };        
+        };
+        
+        pesananTable.setModel(transaksiTableModel);
+    };
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,20 +156,20 @@ public class transaksiAdmin extends javax.swing.JFrame {
 
         pesananTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nama", "Alamat", "Harga", "Nomor Telepon", "Status"
+                "ID Transaksi", "ID Pembeli", "ID Buku", "Jumlah Buku"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

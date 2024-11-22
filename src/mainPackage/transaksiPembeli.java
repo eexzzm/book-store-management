@@ -3,18 +3,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mainPackage;
-
+import DataModels.*;
+import Database.Database;
+import Database.ResponDatabase;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author reizi
  */
 public class transaksiPembeli extends javax.swing.JFrame {
-
+    
+    ArrayList<Transaksi> listTransaksi;
+    DefaultTableModel transaksiTableModel;
     /**
      * Creates new form transaksiPenjual
      */
+    Database db;
     public transaksiPembeli() {
         initComponents();
+        db = new Database();
+        getData();
+    }
+    
+        public void getData(){
+//        listTransaksi = db.lihatDaftarBuku();
+//        showDataTable();
     }
 
     /**
@@ -33,7 +50,7 @@ public class transaksiPembeli extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        pesananTable = new javax.swing.JTable();
+        pesananTableTransaksi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,7 +58,7 @@ public class transaksiPembeli extends javax.swing.JFrame {
 
         Penjual.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Penjual.setForeground(new java.awt.Color(255, 255, 255));
-        Penjual.setText("Admin");
+        Penjual.setText("Pembeli");
 
         backBtn.setBackground(new java.awt.Color(204, 0, 0));
         backBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
@@ -69,9 +86,9 @@ public class transaksiPembeli extends javax.swing.JFrame {
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Penjual)
-                    .addComponent(backBtn))
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backBtn)
+                    .addComponent(Penjual))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -102,22 +119,22 @@ public class transaksiPembeli extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        pesananTable.setModel(new javax.swing.table.DefaultTableModel(
+        pesananTableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nama", "Alamat", "Harga", "Nomor Telepon", "Status"
+                "ID Pembeli", "ID Buku", "Alamat", "Harga", "Nomor HP", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,7 +145,7 @@ public class transaksiPembeli extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(pesananTable);
+        jScrollPane1.setViewportView(pesananTableTransaksi);
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -148,7 +165,7 @@ public class transaksiPembeli extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,7 +174,7 @@ public class transaksiPembeli extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -168,9 +185,8 @@ public class transaksiPembeli extends javax.swing.JFrame {
                 .addGap(0, 349, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addGap(0, 6, Short.MAX_VALUE)
+                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -229,6 +245,6 @@ public class transaksiPembeli extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panel;
-    private javax.swing.JTable pesananTable;
+    private javax.swing.JTable pesananTableTransaksi;
     // End of variables declaration//GEN-END:variables
 }

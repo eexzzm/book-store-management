@@ -6,13 +6,14 @@ package mainPackage;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane; 
+import Database.*;
 /**
  *
  * @author reizi
  */
 public class signUp extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form NewJFrame
      */
@@ -38,6 +39,10 @@ public class signUp extends javax.swing.JFrame {
         password = new javax.swing.JLabel();
         signInBtn = new javax.swing.JButton();
         signUpBtn = new javax.swing.JButton();
+        noTeleponTf = new javax.swing.JTextField();
+        password1 = new javax.swing.JLabel();
+        alamatTf = new javax.swing.JTextField();
+        password2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -93,48 +98,80 @@ public class signUp extends javax.swing.JFrame {
             }
         });
 
+        noTeleponTf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noTeleponTfActionPerformed(evt);
+            }
+        });
+
+        password1.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        password1.setText("No Telepon");
+
+        alamatTf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alamatTfActionPerformed(evt);
+            }
+        });
+
+        password2.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        password2.setText("Alamat");
+
         javax.swing.GroupLayout pop_up_formLayout = new javax.swing.GroupLayout(pop_up_form);
         pop_up_form.setLayout(pop_up_formLayout);
         pop_up_formLayout.setHorizontalGroup(
             pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pop_up_formLayout.createSequentialGroup()
-                .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pop_up_formLayout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pop_up_formLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(username)
-                            .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password)))
-                    .addGroup(pop_up_formLayout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(signUpBtn))
-                    .addGroup(pop_up_formLayout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(signInBtn)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(alamatTf, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pop_up_formLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(signUpBtn)
+                                .addGap(102, 102, 102)
+                                .addComponent(signInBtn))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pop_up_formLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(password2)
+                                    .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(username)
+                                        .addComponent(password)
+                                        .addComponent(password1)
+                                        .addComponent(usernameTf, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                                        .addComponent(passwordTf)
+                                        .addComponent(noTeleponTf)))))
+                        .addGroup(pop_up_formLayout.createSequentialGroup()
+                            .addGap(230, 230, 230)
+                            .addComponent(sign_in, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         pop_up_formLayout.setVerticalGroup(
             pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pop_up_formLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(10, 10, 10)
                 .addComponent(sign_in)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(username)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(signUpBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(signInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(password1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(noTeleponTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(password2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(alamatTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(pop_up_formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(signInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signUpBtn))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -142,16 +179,16 @@ public class signUp extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(31, 31, 31)
                 .addComponent(pop_up_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(pop_up_form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,14 +222,28 @@ public class signUp extends javax.swing.JFrame {
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
+        Database db = new Database();
+        
         String username = usernameTf.getText();
         String password = passwordTf.getText();
+        String nomorHp = noTeleponTf.getText();
+        String alamat = alamatTf.getText();
         
-            if (username.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Username atau Password tidak boleh kosong!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        
+            if (username.isEmpty() || password.isEmpty() || nomorHp.isEmpty() || alamat.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Formulir tidak lengkap. Pastikan Anda mengisi semua kolom!", "Peringatan", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         
+            boolean isRegistered = db.registerPembeli(username, password, nomorHp , alamat);
+            if (isRegistered) {
+                JOptionPane.showMessageDialog(this, "Registrasi berhasil!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                signIn nextFrame = new signIn(); 
+                nextFrame.setVisible(true);
+                this.dispose(); 
+            } else {
+                JOptionPane.showMessageDialog(this, "Username atau Password salah!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
 //        try {
 //            database
 //                    
@@ -204,6 +255,14 @@ public class signUp extends javax.swing.JFrame {
 //        } catch (){
 //        }
     }//GEN-LAST:event_signUpBtnActionPerformed
+
+    private void noTeleponTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noTeleponTfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noTeleponTfActionPerformed
+
+    private void alamatTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alamatTfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alamatTfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,8 +303,12 @@ public class signUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField alamatTf;
     private javax.swing.JPanel background;
+    private javax.swing.JTextField noTeleponTf;
     private javax.swing.JLabel password;
+    private javax.swing.JLabel password1;
+    private javax.swing.JLabel password2;
     private javax.swing.JTextField passwordTf;
     private javax.swing.JPanel pop_up_form;
     private javax.swing.JButton signInBtn;
