@@ -3,22 +3,61 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mainPackage;
+import DataModels.Produk;
+import Database.Database;
+import Database.ResponDatabase;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author reizi
  */
 public class mainPagePembeli extends javax.swing.JFrame {
 
+    
+    ArrayList<Produk> listProduk;
+    DefaultTableModel produkTableModel;
     /**
      * Creates new form mainPage
      */
+    
+    Database db;
     public mainPagePembeli() {
         initComponents();
+        db = new Database();
+        
+        getData();
     }
 
+        public void getData(){
+        listProduk = db.lihatDaftarBuku();
+        showDataTable();
+    }
+    
+    public void showDataTable(){
+        String[] headerTableColumns = {"ID Buku", "Judul", "Nama Penulis", "Harga"};
+        Object[][] produkValue = new Object[listProduk.size()][headerTableColumns.length];
+        int i = 0;
+        
+        for(Produk produk: listProduk) {
+            String produkData[] = {produk.IdBuku+"", produk.JudulBuku, produk.NamaPenulis, produk.Harga + ""};
+            produkValue[i] = produkData;
+            i++;
+        };
+        
+        produkTableModel = new DefaultTableModel(produkValue, headerTableColumns) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };        
+        };
+        
+        daftarBukuTable.setModel(produkTableModel);
+    };
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +73,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
         panel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        beliBtn = new javax.swing.JButton();
         transaksiBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         daftarBukuTable = new javax.swing.JTable();
@@ -84,15 +123,21 @@ public class mainPagePembeli extends javax.swing.JFrame {
         panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("DAFTAR BUKU");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 255));
-        jButton1.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("BELI");
+        beliBtn.setBackground(new java.awt.Color(0, 102, 255));
+        beliBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
+        beliBtn.setForeground(new java.awt.Color(255, 255, 255));
+        beliBtn.setText("BELI");
+        beliBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beliBtnActionPerformed(evt);
+            }
+        });
 
         transaksiBtn.setBackground(new java.awt.Color(51, 102, 255));
         transaksiBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
@@ -114,7 +159,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addComponent(transaksiBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(beliBtn)
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,7 +167,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(beliBtn)
                     .addComponent(jLabel2)
                     .addComponent(transaksiBtn))
                 .addContainerGap(12, Short.MAX_VALUE))
@@ -202,6 +247,76 @@ public class mainPagePembeli extends javax.swing.JFrame {
         this.dispose(); 
     }//GEN-LAST:event_transaksiBtnActionPerformed
 
+    private void beliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliBtnActionPerformed
+//        // TODO add your handling code here:
+//        int selectedRow = daftarBukuTable.getSelectedRow();
+//        if(selectedRow < 0) return;
+//        
+//        String idBuku = daftarBukuTable.getValueAt(selectedRow, 0).toString();
+//        String judul = daftarBukuTable.getValueAt(selectedRow, 1).toString();
+//        String namaPenulis = daftarBukuTable.getValueAt(selectedRow, 2).toString();
+//        String harga = daftarBukuTable.getValueAt(selectedRow, 3).toString();
+//        Database db = new Database();
+//            
+//            try {
+//            ResponDatabase response = db.pesanBuku(SOMEBITS, WIDTH, SOMEBITS));
+//            
+//            if(response.message == "sukses"){
+//                JOptionPane.showMessageDialog(this, "Berhasil membeli buku dengan judul: " + judul);
+//                getData();
+//            }
+//        } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(this, e.getMessage());
+//        }
+
+          int selectedRow = daftarBukuTable.getSelectedRow();
+          if (selectedRow < 0) {
+              JOptionPane.showMessageDialog(this, "Pilih buku terlebih dahulu!");
+              return;
+          }
+          
+          try {
+              // Mengambil data dari tabel
+              int idBuku = Integer.parseInt(daftarBukuTable.getValueAt(selectedRow, 0).toString());
+              String judul = daftarBukuTable.getValueAt(selectedRow, 1).toString();
+              String namaPenulis = daftarBukuTable.getValueAt(selectedRow, 2).toString();
+              double harga = Double.parseDouble(daftarBukuTable.getValueAt(selectedRow, 3).toString());
+              System.out.println(idBuku);
+              System.out.println(judul);
+              System.out.println(namaPenulis);
+              System.out.println(harga);
+              
+              // Menanyakan jumlah buku yang ingin dibeli
+              String jumlahInput = JOptionPane.showInputDialog(this, "Masukkan jumlah buku yang ingin dibeli:");
+              if (jumlahInput == null || jumlahInput.trim().isEmpty()) {
+                  return; // Jika pengguna membatalkan atau tidak mengisi input
+              }
+              int jumlahBuku = Integer.parseInt(jumlahInput);
+              harga = harga * jumlahBuku; //kalkulasi harga
+              double totalHarga = harga * jumlahBuku;
+              
+              System.out.println("jumlhbkuu "+jumlahBuku);
+              System.out.println("harga setlah kali"+totalHarga);
+              
+              // Mendapatkan ID Pembeli dari sistem
+              int idPembeli = 201;
+              String status = "Menunggu"; 
+              // Memanggil metode pesanBuku di kelas Database
+              Database db = new Database();
+              db.pesanBuku(idPembeli, idBuku, jumlahBuku, status, harga);
+//              db.pesanBukuDetil(status, harga);
+              
+              JOptionPane.showMessageDialog(this, "Berhasil membeli buku dengan judul: " + judul);
+              getData(); // Refresh data tabel jika diperlukan
+          } catch (NumberFormatException e) {
+              JOptionPane.showMessageDialog(this, "Masukkan jumlah buku yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
+          } catch (Exception e) {
+              JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+          }
+        
+    }//GEN-LAST:event_beliBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,6 +349,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new mainPagePembeli().setVisible(true);
             }
@@ -242,14 +358,16 @@ public class mainPagePembeli extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Pembeli;
+    private javax.swing.JButton beliBtn;
     private javax.swing.JTable daftarBukuTable;
     private javax.swing.JButton hapusBtn;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panel;
     private javax.swing.JButton transaksiBtn;
     // End of variables declaration//GEN-END:variables
+
+   
 }

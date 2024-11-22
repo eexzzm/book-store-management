@@ -6,6 +6,10 @@ package mainPackage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import DataModels.*;
+import Database.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author reizi
@@ -15,9 +19,42 @@ public class mainPageAdmin extends javax.swing.JFrame {
     /**
      * Creates new form mainPage
      */
+    Database db;
+    ArrayList<Produk> listProduk;
+    DefaultTableModel produkTableModel;
+    
     public mainPageAdmin() {
         initComponents();
+        db = new Database();
+        
+        getData();
     }
+    
+    public void getData(){
+        listProduk = db.lihatDaftarBuku();
+        showDataTable();
+    }
+    
+    public void showDataTable(){
+        String[] headerTableColumns = {"ID Buku", "Nama Penulis", "Judul", "Harga"};
+        Object[][] produkValue = new Object[listProduk.size()][headerTableColumns.length];
+        int i = 0;
+        
+        for(Produk produk: listProduk) {
+            String produkData[] = {produk.IdBuku+"", produk.NamaPenulis, produk.JudulBuku, produk.Harga + ""};
+            produkValue[i] = produkData;
+            i++;
+        };
+        
+        produkTableModel = new DefaultTableModel(produkValue, headerTableColumns) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };        
+        };
+        
+        daftarBukuTable.setModel(produkTableModel);
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
