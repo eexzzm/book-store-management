@@ -3,17 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/User/userManager.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/Database/ResponDatabase.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/DataModels/Transaksi.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/DataModels/Produk.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/Database/Database.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/mainPagePembeli.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/signIn.java</file>
             <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/kelolaAdmin.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/mainPagePembeli.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/Database/Database.java</file>
             <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/mainPageAdmin.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/signUp.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/transaksiAdmin.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/Project/book-store-management/src/mainPackage/transaksiPembeli.java</file>
         </group>
     </open-files>
 </project-private>
