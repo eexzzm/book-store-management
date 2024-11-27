@@ -22,10 +22,11 @@ public class Transaksi {
 //        this.status = status;
 //    }
     
-    public Transaksi (int idTransaksi, int idPembeli, int idBuku, int jumlahBuku){
+    public Transaksi (int idTransaksi, int idPembeli, int idBuku, int jumlahBuku, double harga){
         this.idTransaksi = idTransaksi;
         this.idPembeli = idPembeli;
         this.idBuku = idBuku;
         this.jumlahBuku = jumlahBuku;
+        this.harga = harga;
     }
 }

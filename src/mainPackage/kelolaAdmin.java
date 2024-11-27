@@ -19,6 +19,8 @@ public class kelolaAdmin extends javax.swing.JFrame {
     
     ArrayList<Produk> listProduk;
     DefaultTableModel produkTableModel;
+    private boolean isEdit;
+    private int idEditBuku;
     
     /**
      * Creates new form mainPage
@@ -149,7 +151,7 @@ public class kelolaAdmin extends javax.swing.JFrame {
         tambahBtn.setBackground(new java.awt.Color(0, 102, 255));
         tambahBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
         tambahBtn.setForeground(new java.awt.Color(255, 255, 255));
-        tambahBtn.setText("TAMBAH");
+        tambahBtn.setText("SIMPAN");
         tambahBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tambahBtnActionPerformed(evt);
@@ -200,6 +202,11 @@ public class kelolaAdmin extends javax.swing.JFrame {
         editBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
         editBtn.setForeground(new java.awt.Color(255, 255, 255));
         editBtn.setText("EDIT");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -367,26 +374,61 @@ public class kelolaAdmin extends javax.swing.JFrame {
         String judul = judulTf.getText();
         String harga = hargaTf.getText();
         
-        
-            if (penulis.isEmpty() || judul.isEmpty() || harga.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Formulir tidak lengkap. Pastikan Anda mengisi semua kolom!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            
-            try {
-            ResponDatabase response = db.tambahBuku(judul, penulis, Double.parseDouble(harga));
-            
-            if(response.message == "sukses"){
-                JOptionPane.showMessageDialog(this, "Berhasil menambahkan buku dengan judul: " + judul);
-                getData();
-            }
-        } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, e.getMessage());
+        if (penulis.isEmpty() || judul.isEmpty() || harga.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Formulir tidak lengkap. Pastikan Anda mengisi semua kolom!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        
+        if(isEdit) {
+            JOptionPane.showMessageDialog(this, "Yakin ingin mengedit buku dengan ID " + idEditBuku + "?", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            try {
+                ResponDatabase response = db.editBuku(idEditBuku, judul, penulis, Double.parseDouble(harga));
+                if(response.message.equals("Sukses")) {
+                    isEdit = false;
+                    JOptionPane.showMessageDialog(this, "Sukses mengedit buku!");
+                    getData();
+                } else {
+                    JOptionPane.showMessageDialog(this, "gagal mengedit buku"); 
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());                
+            }
+        } else {
+            try {
+                ResponDatabase response = db.tambahBuku(judul, penulis, Double.parseDouble(harga));
+
+                if(response.message == "sukses"){
+                    JOptionPane.showMessageDialog(this, "Berhasil menambahkan buku dengan judul: " + judul);
+                    getData();
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }        
+        }
+        
+        
         
             
             
     }//GEN-LAST:event_tambahBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        Database db = new Database();
+        int selectedRow = daftarBukuTable.getSelectedRow();
+        if(selectedRow < 0) return;
+        
+        String idBuku = daftarBukuTable.getValueAt(selectedRow, 0).toString();
+        idEditBuku = Integer.parseInt(idBuku);
+        String namaPenulis = daftarBukuTable.getValueAt(selectedRow, 1).toString();
+        String judulBuku = daftarBukuTable.getValueAt(selectedRow, 2).toString();
+        String harga = daftarBukuTable.getValueAt(selectedRow, 3).toString();
+        
+        penulisTf.setText(namaPenulis);
+        judulTf.setText(judulBuku);
+        hargaTf.setText(harga);
+        
+        isEdit = true;
+    }//GEN-LAST:event_editBtnActionPerformed
 
     /**
      * @param args the command line arguments

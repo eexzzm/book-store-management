@@ -74,7 +74,6 @@ public class mainPagePembeli extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         beliBtn = new javax.swing.JButton();
-        transaksiBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         daftarBukuTable = new javax.swing.JTable();
 
@@ -139,16 +138,6 @@ public class mainPagePembeli extends javax.swing.JFrame {
             }
         });
 
-        transaksiBtn.setBackground(new java.awt.Color(51, 102, 255));
-        transaksiBtn.setFont(new java.awt.Font("Arial Black", 1, 8)); // NOI18N
-        transaksiBtn.setForeground(new java.awt.Color(255, 255, 255));
-        transaksiBtn.setText("TRANSAKSI");
-        transaksiBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transaksiBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,9 +145,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(transaksiBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                 .addComponent(beliBtn)
                 .addGap(14, 14, 14))
         );
@@ -168,8 +155,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(beliBtn)
-                    .addComponent(jLabel2)
-                    .addComponent(transaksiBtn))
+                    .addComponent(jLabel2))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -240,34 +226,8 @@ public class mainPagePembeli extends javax.swing.JFrame {
         this.dispose(); 
     }//GEN-LAST:event_hapusBtnActionPerformed
 
-    private void transaksiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiBtnActionPerformed
-        // TODO add your handling code here:
-        transaksiPembeli nextFrame = new transaksiPembeli();
-        nextFrame.setVisible(true);
-        this.dispose(); 
-    }//GEN-LAST:event_transaksiBtnActionPerformed
-
     private void beliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliBtnActionPerformed
 //        // TODO add your handling code here:
-//        int selectedRow = daftarBukuTable.getSelectedRow();
-//        if(selectedRow < 0) return;
-//        
-//        String idBuku = daftarBukuTable.getValueAt(selectedRow, 0).toString();
-//        String judul = daftarBukuTable.getValueAt(selectedRow, 1).toString();
-//        String namaPenulis = daftarBukuTable.getValueAt(selectedRow, 2).toString();
-//        String harga = daftarBukuTable.getValueAt(selectedRow, 3).toString();
-//        Database db = new Database();
-//            
-//            try {
-//            ResponDatabase response = db.pesanBuku(SOMEBITS, WIDTH, SOMEBITS));
-//            
-//            if(response.message == "sukses"){
-//                JOptionPane.showMessageDialog(this, "Berhasil membeli buku dengan judul: " + judul);
-//                getData();
-//            }
-//        } catch (Exception e) {
-//                    JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
 
           int selectedRow = daftarBukuTable.getSelectedRow();
           if (selectedRow < 0) {
@@ -281,10 +241,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
               String judul = daftarBukuTable.getValueAt(selectedRow, 1).toString();
               String namaPenulis = daftarBukuTable.getValueAt(selectedRow, 2).toString();
               double harga = Double.parseDouble(daftarBukuTable.getValueAt(selectedRow, 3).toString());
-              System.out.println(idBuku);
-              System.out.println(judul);
-              System.out.println(namaPenulis);
-              System.out.println(harga);
+              
               
               // Menanyakan jumlah buku yang ingin dibeli
               String jumlahInput = JOptionPane.showInputDialog(this, "Masukkan jumlah buku yang ingin dibeli:");
@@ -292,22 +249,16 @@ public class mainPagePembeli extends javax.swing.JFrame {
                   return; // Jika pengguna membatalkan atau tidak mengisi input
               }
               int jumlahBuku = Integer.parseInt(jumlahInput);
-              harga = harga * jumlahBuku; //kalkulasi harga
               double totalHarga = harga * jumlahBuku;
               
               System.out.println("jumlhbkuu "+jumlahBuku);
               System.out.println("harga setlah kali"+totalHarga);
               
-              // Mendapatkan ID Pembeli dari sistem
-              int idPembeli = 201;
-              String status = "Menunggu"; 
-              // Memanggil metode pesanBuku di kelas Database
               Database db = new Database();
-              db.pesanBuku(idPembeli, idBuku, jumlahBuku, status, harga);
-//              db.pesanBukuDetil(status, harga);
+              db.pesanBuku(idBuku, jumlahBuku, totalHarga);
               
               JOptionPane.showMessageDialog(this, "Berhasil membeli buku dengan judul: " + judul);
-              getData(); // Refresh data tabel jika diperlukan
+              getData();
           } catch (NumberFormatException e) {
               JOptionPane.showMessageDialog(this, "Masukkan jumlah buku yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
           } catch (Exception e) {
@@ -366,7 +317,6 @@ public class mainPagePembeli extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel panel;
-    private javax.swing.JButton transaksiBtn;
     // End of variables declaration//GEN-END:variables
 
    
