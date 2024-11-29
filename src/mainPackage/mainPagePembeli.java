@@ -228,20 +228,17 @@ public class mainPagePembeli extends javax.swing.JFrame {
 
     private void beliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliBtnActionPerformed
 //        // TODO add your handling code here:
-
           int selectedRow = daftarBukuTable.getSelectedRow();
           if (selectedRow < 0) {
               JOptionPane.showMessageDialog(this, "Pilih buku terlebih dahulu!");
               return;
           }
-          
           try {
               // Mengambil data dari tabel
               int idBuku = Integer.parseInt(daftarBukuTable.getValueAt(selectedRow, 0).toString());
               String judul = daftarBukuTable.getValueAt(selectedRow, 1).toString();
               String namaPenulis = daftarBukuTable.getValueAt(selectedRow, 2).toString();
               double harga = Double.parseDouble(daftarBukuTable.getValueAt(selectedRow, 3).toString());
-              
               
               // Menanyakan jumlah buku yang ingin dibeli
               String jumlahInput = JOptionPane.showInputDialog(this, "Masukkan jumlah buku yang ingin dibeli:");
@@ -250,9 +247,6 @@ public class mainPagePembeli extends javax.swing.JFrame {
               }
               int jumlahBuku = Integer.parseInt(jumlahInput);
               double totalHarga = harga * jumlahBuku;
-              
-              System.out.println("jumlhbkuu "+jumlahBuku);
-              System.out.println("harga setlah kali"+totalHarga);
               
               Database db = new Database();
               db.pesanBuku(idBuku, jumlahBuku, totalHarga);
@@ -263,9 +257,7 @@ public class mainPagePembeli extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(this, "Masukkan jumlah buku yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
           } catch (Exception e) {
               JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
-          }
-        
+          }        
     }//GEN-LAST:event_beliBtnActionPerformed
 
     /**

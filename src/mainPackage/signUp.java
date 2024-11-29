@@ -231,7 +231,8 @@ public class signUp extends javax.swing.JFrame {
         
         
             if (username.isEmpty() || password.isEmpty() || nomorHp.isEmpty() || alamat.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Formulir tidak lengkap. Pastikan Anda mengisi semua kolom!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Formulir tidak lengkap. Pastikan Anda mengisi semua kolom!",
+                        "Peringatan", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         
@@ -244,16 +245,6 @@ public class signUp extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Username atau Password salah!", "Error", JOptionPane.ERROR_MESSAGE);
             }
-//        try {
-//            database
-//                    
-//            if (response.status == 400){
-//            }        
-//            
-//            200
-//                    
-//        } catch (){
-//        }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void noTeleponTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noTeleponTfActionPerformed

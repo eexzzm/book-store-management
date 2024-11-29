@@ -183,7 +183,6 @@ public class signIn extends javax.swing.JFrame {
         }
         
         Database db = new Database();
-        
         String role = db.getUser(username, password);
         
         if ("admin".equals(role)) {
@@ -203,17 +202,7 @@ public class signIn extends javax.swing.JFrame {
         } else {
         // Jika username atau password salah
         JOptionPane.showMessageDialog(this, "Username atau Password salah!", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-//        if (username.equals(dummyUsername) && password.equals(dummyPassword)) {
-//        JOptionPane.showMessageDialog(this, "Login berhasil!", "Informasi", JOptionPane.INFORMATION_MESSAGE);
-//
-//        // Ganti `NextFrame` dengan nama JFrame yang akan digunakan
-//        mainPageAdmin nextFrame = new mainPageAdmin(); 
-//        nextFrame.setVisible(true);
-//        this.dispose(); 
-//        } else {
-//        JOptionPane.showMessageDialog(this, "Username atau Password salah!", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
+        }
     }//GEN-LAST:event_signBtnActionPerformed
 
     private void passwordTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTfActionPerformed

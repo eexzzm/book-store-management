@@ -15,10 +15,6 @@ import javax.swing.table.DefaultTableModel;
  * @author reizi
  */
 public class mainPageAdmin extends javax.swing.JFrame {
-
-    /**
-     * Creates new form mainPage
-     */
     Database db;
     ArrayList<Produk> listProduk;
     DefaultTableModel produkTableModel;
@@ -26,7 +22,6 @@ public class mainPageAdmin extends javax.swing.JFrame {
     public mainPageAdmin() {
         initComponents();
         db = new Database();
-        
         getData();
     }
     

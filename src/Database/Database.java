@@ -49,7 +49,6 @@ public class Database {
                 
                 try (ResultSet rsAdmin = pstAdmin.executeQuery()) {
                     if (rsAdmin.next()) {
-                        
                         role = "admin";
                         return role;
                     }
@@ -63,10 +62,6 @@ public class Database {
                 
                 try (ResultSet rsPembeli = pstPembeli.executeQuery()) {
                     if (rsPembeli.next()) {
-                        System.out.print(role);
-                        System.out.print(username);
-                        System.out.print(password);
-                        
                         role = "pembeli";
                         return role;
                     }
